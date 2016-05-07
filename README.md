@@ -1,5 +1,6 @@
 # ol
 
-### Todo's as of May 5
-* Create objects from each CSV row
-* Feed data as JSON
+### Todo's as of May 7
+* Write tests!
+* Write documentation
+* Handle invalid input for find business by ID
