@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'csv'
 require 'json'
+require 'cgi'
 
 class Business
 
@@ -39,11 +40,6 @@ class Business
 		}.to_json(*a)
 	end
 
-		# def self.all
-  #   	ObjectSpace.each_object(self).to_a
-  # 	end
-
-
 	# def find_by_id
 	# 	$all_businesses.
 	# end
@@ -60,9 +56,15 @@ businesses.each do |property|
 	$all_businesses << Business.new(property[0], property[1], property[2], property[3], property[4], property[5], property[6], property[7], property[8], property[9], property[10], property[11])
 end
 
-get '/businesses?:page' do
+get '/businesses' do
 
-	print_businesses = $all_businesses.slice(0, 50)
+	page = params[:page].to_i
+	if page < 1 || page > ($all_businesses.size / 50)
+		page = 1
+	end
+
+	puts $all_businesses.size
+	print_businesses = $all_businesses.slice((page - 1)*50, 50)
 	print_businesses.to_json
 end
 
