@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'csv'
 require 'json'
-require 'cgi'
+require 'uri'
 
 class Business
 
@@ -40,9 +40,6 @@ class Business
 		}.to_json(*a)
 	end
 
-	# def find_by_id
-	# 	$all_businesses.
-	# end
 end
 
 businesses = CSV.read("./engineering_project_businesses.csv")
@@ -57,7 +54,6 @@ businesses.each do |property|
 end
 
 get '/businesses' do
-
 	page = params[:page].to_i
 	if page < 1 || page > ($all_businesses.size / 50)
 		page = 1
@@ -68,7 +64,8 @@ get '/businesses' do
 	print_businesses.to_json
 end
 
-# get '/businesses/:id' do
-# 	b = Business.find(1)
-# 	JSON.pretty_generate(b.to_json)
-# end
+get '/businesses/:id' do
+	id = URI(uri).path.split('/').last.to_i
+	response = $all_businesses[id]
+	response.to_json
+end
