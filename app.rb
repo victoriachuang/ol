@@ -1,13 +1,12 @@
-require 'sinatra'
 require 'csv'
 require 'json'
+require 'sinatra'
 require 'uri'
 
 BUSINESSES_PER_PAGE = 50
 
 class Business
 
-	# read each attribute
 	attr_reader :id, :uuid, :name, :address, :address2, :city, :state, :zip, :country, :phone, :website, :created_at
 
 	def initialize(id, uuid, name, address, address2, city, state, zip, country, phone, website, created_at)
@@ -57,7 +56,7 @@ end
 
 get '/businesses' do
 	page = params[:page].to_i
-	if page < 1 || page > ($all_businesses.size / BUSINESSES_PER_PAGE)
+	if (page < 1 || page > ($all_businesses.size / BUSINESSES_PER_PAGE))
 		page = 1
 	end
 
@@ -67,6 +66,6 @@ end
 
 get '/businesses/:id' do
 	id = URI(uri).path.split('/').last.to_i
-	response = $all_businesses[id]
-	response.to_json
+	display_business = $all_businesses[id]
+	display_business.to_json
 end
