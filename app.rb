@@ -3,6 +3,8 @@ require 'csv'
 require 'json'
 require 'uri'
 
+BUSINESSES_PER_PAGE = 50
+
 class Business
 
 	# read each attribute
@@ -55,13 +57,12 @@ end
 
 get '/businesses' do
 	page = params[:page].to_i
-	if page < 1 || page > ($all_businesses.size / 50)
+	if page < 1 || page > ($all_businesses.size / BUSINESSES_PER_PAGE)
 		page = 1
 	end
 
-	puts $all_businesses.size
-	print_businesses = $all_businesses.slice((page - 1)*50, 50)
-	print_businesses.to_json
+	display_businesses = $all_businesses.slice((page - 1) * BUSINESSES_PER_PAGE, BUSINESSES_PER_PAGE)
+	display_businesses.to_json
 end
 
 get '/businesses/:id' do
