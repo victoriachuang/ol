@@ -5,10 +5,12 @@
 
 ### Required gems
 
-To run the API endpoints:
-`gem install sinatra`
+The API endpoints require the `sinatra` gem:
+```
+gem install sinatra
+```
 
-To run the tests:
+The tests require `rspec` and `rack-test`:
 ```
 gem install rspec
 gem install rack-test
