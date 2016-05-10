@@ -1,6 +1,6 @@
 # ol
 
-### Required gems
+## Required gems
 
 The API endpoints require the `sinatra` gem:
 ```
@@ -13,7 +13,7 @@ gem install rspec
 gem install rack-test
 ```
 
-### API endpoint use
+## API endpoint use
 
 This API provides two read-only endpoints, `/businesses` and `/businesses/:id`.
 
@@ -37,4 +37,8 @@ This route will fetch a specific business, as specified by the `:id` parameter.
 
 A 404 error will be raised if an invalid business is requested.
 
-### Tests
+## Tests
+
+In the root directory, run `rspec spec/app_spec.rb` in the command line.
+
+The specs include testing 200 status codes for valid page and business ID requests and 400 status codes for invalid requests.
