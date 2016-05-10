@@ -61,7 +61,7 @@ get '/businesses' do
 	if (page == 0)
 		page = 1
 
-	# raise 404 if invalid page range requested
+	# raise error if invalid page range requested
 	elsif (page < 0 || page > ($all_businesses.size / BUSINESSES_PER_PAGE))
 		status 404
 	end
@@ -73,8 +73,11 @@ end
 get '/businesses/:id' do
 	id = URI(uri).path.split('/').last.to_i
 	display_business = $all_businesses[id]
+
+	# raise error if business doesn't exist
 	if display_business == nil
 		status 404
 	end
+
 	display_business.to_json
 end
