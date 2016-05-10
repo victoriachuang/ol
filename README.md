@@ -23,10 +23,18 @@ ruby app.rb
 ```
 In your browser, go to `localhost:4567/businesses`.
 
-#### `businesses`
+#### `/businesses`
 
 This route will fetch a page of 50 businesses, sorted by ID.
 
-To request a different page, go to `localhost:4567/businesses?page=NUMBER`. In the event that no parameter is given, NUMBER will default to 1.
+To request a different page, go to `localhost:4567/businesses?page=NUMBER`. In the event that no parameter is given, `NUMBER` will default to 1.
+
+A 404 error will be raised if an invalid page is requested.
+
+#### '/businesses/:id'
+
+This route will fetch a specific business, as specified by the `:id` parameter.
+
+A 404 error will be raised if an invalid business is requested.
 
 ### Tests
