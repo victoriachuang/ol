@@ -10,4 +10,14 @@ describe "Businesses listings" do
   	get '/businesses/5'
   	expect(last_response).to be_ok
   end
+
+  it "raises an error when requesting an invalid page" do
+  	get '/businesses?page=60000'
+  	expect(last_response.status).to eq(404)
+  end
+
+  it "raises an error when requesting an invalid business ID" do
+  	get 'businesses/60000'
+  	expect(last_response.status).to eq(404)
+  end
 end

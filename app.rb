@@ -64,6 +64,7 @@ get '/businesses' do
 	# raise 404 if invalid page range requested
 	elsif (page < 0 || page > ($all_businesses.size / BUSINESSES_PER_PAGE))
 		status 404
+		erb :error
 	end
 
 	display_businesses = $all_businesses.slice((page - 1) * BUSINESSES_PER_PAGE, BUSINESSES_PER_PAGE)
@@ -73,5 +74,8 @@ end
 get '/businesses/:id' do
 	id = URI(uri).path.split('/').last.to_i
 	display_business = $all_businesses[id]
+	if display_business == nil
+		status 404
+	end
 	display_business.to_json
 end
