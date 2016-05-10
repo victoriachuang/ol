@@ -1,6 +1,15 @@
 # ol
 
 ### Todo's as of May 7
-* Write tests!
 * Write documentation
-* Handle invalid input for find business by ID
+
+### Required gems
+
+To run the API endpoints:
+`gem install sinatra`
+
+To run the tests:
+```
+gem install rspec
+gem install rack-test
+```
