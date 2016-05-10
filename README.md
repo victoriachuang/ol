@@ -39,6 +39,10 @@ A 404 error will be raised if an invalid business is requested.
 
 ## Tests
 
-In the root directory, run `rspec spec/app_spec.rb` in the command line.
+In the root directory, run
+```
+rspec spec/app_spec.rb --format documentation
+```
+This will display the specifications of each test to the console.
 
 The specs include testing 200 status codes for valid page and business ID requests and 400 status codes for invalid requests.
