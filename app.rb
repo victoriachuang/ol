@@ -56,8 +56,14 @@ end
 
 get '/businesses' do
 	page = params[:page].to_i
-	if (page < 1 || page > ($all_businesses.size / BUSINESSES_PER_PAGE))
+
+	# if there is no page parameter, set to page 1
+	if (page == 0)
 		page = 1
+
+	# raise 404 if invalid page range requested
+	elsif (page < 0 || page > ($all_businesses.size / BUSINESSES_PER_PAGE))
+		status 404
 	end
 
 	display_businesses = $all_businesses.slice((page - 1) * BUSINESSES_PER_PAGE, BUSINESSES_PER_PAGE)
