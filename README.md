@@ -31,7 +31,7 @@ To request a different page, go to `localhost:4567/businesses?page=NUMBER`. In t
 
 A 404 error will be raised if an invalid page is requested.
 
-#### '/businesses/:id'
+#### `/businesses/:id`
 
 This route will fetch a specific business, as specified by the `:id` parameter.
 
