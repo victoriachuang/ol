@@ -21,7 +21,7 @@ describe 'Businesses listings' do
   	expect(last_response.status).to eq(404)
   end
 
-  it 'redirects the route when requesting an empty ID parameter' do
+  it 'redirects the route when path contains an extra forward slash' do
   	get '/businesses/'
   	expect(last_response.status).to eq(302)
   end
