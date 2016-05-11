@@ -45,4 +45,4 @@ rspec spec/app_spec.rb --format documentation
 ```
 This will display the specifications of each test to the console.
 
-The specs include testing 200 status codes for valid page and business ID requests and 400 status codes for invalid requests.
+The specs include testing 200 status codes for valid page and business ID requests, 400 status codes for invalid requests and a 302 status code when requesting a route with an extra forward slash.
