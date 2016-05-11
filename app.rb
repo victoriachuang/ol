@@ -70,6 +70,11 @@ get '/businesses' do
 	display_businesses.to_json
 end
 
+get '/businesses/' do
+	redirect '/businesses'
+	status 302
+end
+
 get '/businesses/:id' do
 	id = URI(uri).path.split('/').last.to_i
 	display_business = $all_businesses[id]

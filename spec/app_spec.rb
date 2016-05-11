@@ -17,7 +17,12 @@ describe 'Businesses listings' do
   end
 
   it 'raises an error when requesting an invalid business ID' do
-  	get 'businesses/60000'
+  	get '/businesses/60000'
   	expect(last_response.status).to eq(404)
+  end
+
+  it 'redirects the route when requesting an empty ID parameter' do
+  	get '/businesses/'
+  	expect(last_response.status).to eq(302)
   end
 end
