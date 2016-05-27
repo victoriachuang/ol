@@ -1,6 +1,7 @@
 require 'digest/sha1'
 require 'rack/test'
 require 'rspec'
+require 'uri'
 
 ENV['RACK_ENV'] = 'test'
 
@@ -19,7 +20,7 @@ module RSpecMixin
   end
 
   def get_using_token(uri, token)
-    thing_to_hash = uri + token
+    thing_to_hash = URI(uri).path + token
     hashed_thing = Digest::SHA1.hexdigest thing_to_hash
     get uri, nil, {'Authorization' => hashed_thing}
   end
