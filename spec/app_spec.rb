@@ -23,27 +23,27 @@ describe 'Businesses listings' do
   end
 
   it 'allows access to businesses route' do
-    authenticated_get '/businesses'
+    good_authenticated_get '/businesses'
     expect(last_response).to be_ok
   end
 
   it 'allows access to business with valid ID' do
-  	authenticated_get '/businesses/5'
+  	good_authenticated_get '/businesses/5'
   	expect(last_response).to be_ok
   end
 
   it 'raises an error when requesting an invalid page' do
-  	authenticated_get '/businesses?page=60000'
+  	good_authenticated_get '/businesses?page=60000'
   	expect(last_response.status).to eq(404)
   end
 
   it 'raises an error when requesting an invalid business ID' do
-  	authenticated_get '/businesses/60000'
+  	good_authenticated_get '/businesses/60000'
   	expect(last_response.status).to eq(404)
   end
 
   it 'redirects the route when path contains a leading forward slash' do
-  	authenticated_get '/businesses/'
+  	good_authenticated_get '/businesses/'
   	expect(last_response.status).to eq(302)
   end
 end
