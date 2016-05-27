@@ -1,11 +1,12 @@
 require 'csv'
 require 'json'
-require 'securerandom'
+require 'net/http'
+# require 'securerandom'
 require 'sinatra'
 require 'uri'
 
 BUSINESSES_PER_PAGE = 50
-KEY = SecureRandom.urlsafe_base64
+KEY = 'lg_JhXDOSTZNJcVjH7IpsQ'
 
 class Business
 
@@ -56,12 +57,15 @@ businesses.each do |property|
 	$all_businesses << Business.new(property[0], property[1], property[2], property[3], property[4], property[5], property[6], property[7], property[8], property[9], property[10], property[11])
 end
 
-get '/businesses' do
+before do
 
-	key = params[:key]
-	if key != KEY
+	if request.env['Authorization'] != KEY
 		halt 403
 	end
+
+end
+
+get '/businesses' do
 
 	page = params[:page].to_i
 
