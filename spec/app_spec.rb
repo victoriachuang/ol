@@ -17,7 +17,7 @@ describe 'Businesses listings' do
     expect(last_response.status).to eq(403)
   end
 
-  it 'denies access to business route if no token is provided' do
+  it 'denies access to business route if bad token is provided' do
     bad_authenticated_get '/businesses/5'
     expect(last_response.status).to eq(403)
   end
