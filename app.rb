@@ -1,9 +1,11 @@
 require 'csv'
 require 'json'
+require 'securerandom'
 require 'sinatra'
 require 'uri'
 
 BUSINESSES_PER_PAGE = 50
+KEY = SecureRandom.urlsafe_base64
 
 class Business
 
@@ -55,6 +57,12 @@ businesses.each do |property|
 end
 
 get '/businesses' do
+
+	key = params[:key]
+	if key != KEY
+		halt 403
+	end
+
 	page = params[:page].to_i
 
 	# if there is no page parameter, set to page 1
