@@ -21,7 +21,12 @@ In the command line, run
 ```
 ruby app.rb
 ```
-In your browser, go to `http://localhost:4567/businesses`.
+In bash, define the HTTP header with the authorization key and run `curl` to send the header in the request.
+
+```bash
+HEADER = 'Authorization: ' + KEY
+curl -i $HEADER http://localhost::4567
+```
 
 #### `/businesses`
 
