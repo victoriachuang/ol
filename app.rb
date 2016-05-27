@@ -1,4 +1,5 @@
 require 'csv'
+require 'digest/sha1'
 require 'json'
 require 'sinatra'
 require 'uri'
@@ -58,9 +59,16 @@ end
 # check for valid authorization
 before do
 
-	if request.env['Authorization'].nil?
+	client_input_key = request.env['Authorization']
+	path = URI(uri).path
+
+	if client_input_key.nil?
 		halt 401
-	elsif request.env['Authorization'] != KEY
+	end
+
+	encrypted_path_key = Digest::SHA1.hexdigest(path + KEY)
+
+	if encrypted_path_key != client_input_key
 		halt 403
 	end
 
